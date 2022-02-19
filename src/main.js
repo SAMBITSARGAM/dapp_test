@@ -5,7 +5,7 @@ import marketPlaceAbi from "../contract/marketplace.abi.json";
 import erc20Abi from "../contract/erc20.abi.json";
 
 const ERC20_DECIMALS = 18;
-const MPContractAddress = "0x0xF9CC89cB924f94a32322F8EC59Ad3BE15c896F7b";
+const MPContractAddress = "0x95896950ec74266e785e623a1652a1221d84ad35";
 const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
 
 let kit;
@@ -63,7 +63,6 @@ const getProducts = async function () {
         name: p[1],
         image: p[2],
         description: p[3],
-        location: p[4],
         price: new BigNumber(p[5]),
         sold: p[6],
       });
@@ -98,10 +97,6 @@ function productTemplate(_product) {
         <h2 class="card-title fs-4 fw-bold mt-2">${_product.name}</h2>
         <p class="card-text mb-4" style="min-height: 82px">
           ${_product.description}             
-        </p>
-        <p class="card-text mt-4">
-          <i class="bi bi-geo-alt-fill"></i>
-          <span>${_product.location}</span>
         </p>
         <div class="d-grid gap-2">
           <a class="btn btn-lg btn-outline-dark buyBtn fs-6 p-3" id=${_product.index
@@ -157,7 +152,6 @@ document
       document.getElementById("newProductName").value,
       document.getElementById("newImgUrl").value,
       document.getElementById("newProductDescription").value,
-      document.getElementById("newLocation").value,
       new BigNumber(document.getElementById("newPrice").value)
         .shiftedBy(ERC20_DECIMALS)
         .toString(),
